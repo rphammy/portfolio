@@ -41,7 +41,7 @@ export default class ScrollToTop extends Component {
       <div className="scroll-to-top">
         {is_visible && (
           <div onClick={() => this.scrollToTop()}>
-            <img src={up} width="40" height="40"/>
+            <img src={up} width="40" height="40" alt="up"/>
           </div>
         )}
       </div>

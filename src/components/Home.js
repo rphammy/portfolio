@@ -11,7 +11,7 @@ export class Home extends Component {
 
 				<div class="main-body">
 					<div class="img_box">
-						<img src={me} width="375" height="500"/>
+						<img src={me} width="375" height="500" alt="me"/>
 					<div/>
 					<div class="text_box">
 						<h3>

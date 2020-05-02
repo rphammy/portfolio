@@ -3,12 +3,13 @@ import './App.css'
 import TabList from './components/TabList'
 import Body from './components/Body'
 
-
 export class App extends Component {
+
 	constructor(){
 		super();
 		this.state = {
-			activeTab: 1
+			activeTab: 1,
+			data: {}
 		}
 		this.changeTab = (id) => {
 			this.setState({
@@ -16,6 +17,8 @@ export class App extends Component {
 			})
 		}
 	}
+
+
   	render() {
 	  	const tabs = [
 	  	{
@@ -33,6 +36,10 @@ export class App extends Component {
 	  	{
 	  		id: 4,
 	  		title: 'Contact'
+	  	},
+	  	{
+	  		id: 5,
+	  		title: 'Say Hi'
 	  	}
 	  	]    
 	  	return (
@@ -45,6 +52,7 @@ export class App extends Component {
 	      	<div className="main-body">
 	      		<Body activeTab={this.state.activeTab}/>
 	      	</div>
+
 	      </div>
 	    );
   	}

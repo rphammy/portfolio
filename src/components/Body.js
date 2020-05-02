@@ -3,6 +3,7 @@ import Home from './Home'
 import Projects from './Projects'
 import Gallery from './Gallery'
 import Contact from './Contact'
+import GuestBook from './GuestBook'
 
 export class Body extends Component {
 	displayContent = () => {
@@ -13,8 +14,10 @@ export class Body extends Component {
 			return <Projects/>
 		else if (activeTab===3)
 			return <Gallery/>
-		else
+		else if (activeTab===4)
 			return <Contact/>
+		else
+			return <GuestBook/>
 	}
 	render() {
 		return (this.displayContent());

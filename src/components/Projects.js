@@ -13,21 +13,21 @@ export class Projects extends Component {
 				<div class="list">
 					<div class="project">
 						<a href="https://github.com/rphammy/Spartify">
-							<img class="project__img"src={spotify} width="200" height="200"/>
+							<img class="project__img"src={spotify} width="200" height="200" alt="spotify"/>
 						</a>
 						<a class="project__text"href="https://github.com/rphammy/Spartify">
 							Spartify: A Shared Spotify App
 						</a>
 					</div>
 					<div class="project">
-						<iframe width="350" height="200" src="https://www.youtube.com/embed/FE_yc1LtAfE" frameborder="0" allowfullscreen></iframe>
+						<iframe width="350" height="200" src="https://www.youtube.com/embed/FE_yc1LtAfE" frameborder="0" allowfullscreen title="brainmuse"></iframe>
 						<a class="project__text" href="https://github.com/rphammy/BrainMuse">
 							BrainMuse: Turning Brainwaves into Art
 						</a>
 					</div>		
 					<div class="project">
 						<a href="https://scrapstosnacks.herokuapp.com/">
-							<img class="project__img"src={scraps} width="220" height="200"/>
+							<img class="project__img"src={scraps} width="220" height="200" alt="scraps"/>
 						</a>
 						<div class="project__text">
 							<div>

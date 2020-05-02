@@ -14,7 +14,7 @@ export class Contact extends Component {
 
 				<div class="main-body">
 					<div class="img_box">
-						<img src={me} width="550" height="400"/>
+						<img src={me} width="550" height="400" alt="me"/>
 					</div>
 					<div class="text_box">
 						<h3>
@@ -24,13 +24,13 @@ export class Contact extends Component {
 							Want to chat? My inbox is always open or reach out to me on social media! 
 						</p>
 						<a href="mailto: rpham@ucsb.edu">
-							<img src={gmail} width="50" height="50"/>
+							<img src={gmail} width="50" height="50" alt="gmail"/>
 						</a>
 						<a href="https://www.linkedin.com/in/rphammy/">
-							<img src={linkedin} width="50" height="50"/>
+							<img src={linkedin} width="50" height="50" alt="linkedin"/>
 						</a>
 						<a href="https://github.com/rphammy">
-							<img src={github} width="50" height="50"/>
+							<img src={github} width="50" height="50" alt="github"/>
 						</a>
 
 					</div>
