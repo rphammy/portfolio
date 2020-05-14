@@ -42,7 +42,18 @@ export class Movies extends Component {
 			})
 			.catch(console.log)
 		))
-}
+	}
+
+	hideScroll(){
+		const $body = document.querySelector('body');
+		$body.style.overflow = 'hidden';
+	}
+
+	revealScroll(){
+		const $body = document.querySelector('body');
+		$body.style.overflow = 'auto';
+	}
+
 	render() {
 		console.log(this.state.movies)
 		let movies = Object.values(this.state.movies);
@@ -60,12 +71,12 @@ export class Movies extends Component {
 						{movies.map((movie) =>{
 							let hrefID = '#' + movie.Title;
 							return (<a href={hrefID}>
-								<img src={movie.Poster} width="300" height="400" alt={movie.Title}/>
+								<img src={movie.Poster} onClick={this.hideScroll.bind(this)} width="300" height="400" alt={movie.Title}/>
 							</a>)
 						})}
 					</section>
 					{movies.map((movie) => (
-						<a href="#" class="lightbox" id={movie.Title} >
+						<a href="#" class="lightbox" onClick={this.revealScroll.bind(this)} id={movie.Title} >
 						  	<img src={movie.Poster} alt={movie.Title}/>
 						  	<p> Title: {movie.Title}</p>
 						 	<p> Director: {movie.Director}</p>
