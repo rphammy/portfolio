@@ -30,7 +30,7 @@ export class Movies extends Component {
 
 	componentDidMount(){
 		IDS.map((movieID) => (
-			fetch('http://www.omdbapi.com/?i='+ movieID + '&apikey=' + API_KEY)
+			fetch('https://www.omdbapi.com/?i='+ movieID + '&apikey=' + API_KEY)
 			.then(res => res.json())
 			.then((data) => {
 				this.setState(prevState => ({ 
