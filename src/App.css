@@ -39,9 +39,13 @@ body {
 
 .gallery img {
   /* Just in case there are inline attributes */
-  width: 100% !important;
+  width: 100% ;
   height: auto !important;
   padding-top: 1rem;
+}
+
+.gallery img:hover{
+  opacity: .65;
 }
 
 @media (max-width: 1200px) {
@@ -100,6 +104,7 @@ body {
   max-width: 90%;
   max-height: 80%;
   margin-top: 5%;
+  width: auto;
 }
 
 .lightbox:target {

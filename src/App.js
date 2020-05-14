@@ -35,12 +35,17 @@ export class App extends Component {
 	  	},
 	  	{
 	  		id: 4,
-	  		title: 'Contact'
+	  		title: 'Movies'
 	  	},
 	  	{
 	  		id: 5,
+	  		title: 'Contact'
+	  	},
+	  	{
+	  		id: 6,
 	  		title: 'Say Hi'
-	  	}
+	  	},
+
 	  	]    
 	  	return (
 	      <div className="body">

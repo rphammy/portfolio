@@ -4,6 +4,7 @@ import Projects from './Projects'
 import Gallery from './Gallery'
 import Contact from './Contact'
 import GuestBook from './GuestBook'
+import Movies from './Movies'
 
 export class Body extends Component {
 	displayContent = () => {
@@ -15,9 +16,12 @@ export class Body extends Component {
 		else if (activeTab===3)
 			return <Gallery/>
 		else if (activeTab===4)
+			return <Movies/>
+		else if (activeTab===5)
 			return <Contact/>
-		else
+		else if (activeTab===6)
 			return <GuestBook/>
+
 	}
 	render() {
 		return (this.displayContent());
