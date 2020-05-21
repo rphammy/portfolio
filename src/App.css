@@ -7,9 +7,6 @@
   color: white;
 }
 
-body {
-  height: 100%;
-}
 .main-body {
   display: flex;
   padding: .7rem;
@@ -97,7 +94,6 @@ body {
   top: 0;
   left: 0;
   background: #A8D0E6;
-  overflow: hidden;
 }
 
 .lightbox img {
@@ -106,7 +102,6 @@ body {
   max-height: 80%;
   margin-top: 5%;
   width: auto;
-  overflow: hidden;
 }
 
 .lightbox:target {
@@ -166,6 +161,7 @@ a{
 body {
   font-family: 'Open Sans', sans-serif;
   background-color: #a9d0e6;
+  height: 100%;
 }
 
 header {
