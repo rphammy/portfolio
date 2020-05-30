@@ -102,7 +102,8 @@ export class GuestBook extends Component {
 	  		break;
   	}
 
-  	this.setState({ errors, [name]: value}, () => {
+  	this.setState({ errors, [name]: value}, 
+  		() => {
   		console.log(errors)
   		})
   }
@@ -209,7 +210,7 @@ export class GuestBook extends Component {
 			             		{this.state.guests.map((guest, i) => {
 			             			if(guest.public && (!(this.state.guests.length === i +1))){
 				             			return (
-				             				<li key={guest.id}>
+				             				<li className="guestbook_li" key={guest.id}>
 				             					<p className="date"> {guest.date} </p>
 				             					<p className="name">{guest.name}</p>
 				             					<p className="description">{guest.description}</p>
@@ -219,7 +220,7 @@ export class GuestBook extends Component {
 			             			}
 			             			if(guest.public && (this.state.guests.length === i +1)){
 				             			return (
-				             				<motion.li initial="hidden" animate="visible" variants={variants} key={guest.id}>
+				             				<motion.li className="guestbook_li" initial="hidden" animate="visible" variants={variants} key={guest.id}>
 				             					<p className="date"> {guest.date} </p>
 				             					<p className="name">{guest.name}</p>
 				             					<p className="description">{guest.description}</p>

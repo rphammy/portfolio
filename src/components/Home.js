@@ -5,15 +5,15 @@ export class Home extends Component {
 	render() {
 		return (
 			<div>
-				<div class="header">
+				<div className="header">
 					<h1>Welcome to my portfolio page!</h1>
 				</div>
 
-				<div class="main-body">
-					<div class="img_box">
+				<div className="main-body">
+					<div className="img_box">
 						<img src={me} width="375" height="500" alt="me"/>
 					<div/>
-					<div class="text_box">
+					<div className="text_box">
 						<h3>
 							Rachel Pham
 						</h3>

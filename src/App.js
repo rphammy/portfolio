@@ -39,10 +39,18 @@ export class App extends Component {
 	  	},
 	  	{
 	  		id: 5,
-	  		title: 'Contact'
+	  		title: 'Add Movie'
 	  	},
 	  	{
 	  		id: 6,
+	  		title: 'Create List'
+	  	},
+	  	{
+	  		id: 7,
+	  		title: 'Contact'
+	  	},
+	  	{
+	  		id: 8,
 	  		title: 'Say Hi'
 	  	},
 

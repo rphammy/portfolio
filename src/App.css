@@ -27,6 +27,21 @@
   line-height: .1;
 }
 
+.movies {
+  line-height: 0;
+  columns: auto;
+}
+
+.movies img {
+  /* Just in case there are inline attributes */
+  width: 100% ;
+  height: auto !important;
+  max-width: 200px;
+  margin: .30rem;
+}
+.movies img:hover{
+  opacity: .65;
+}
 .gallery {
   line-height: 0;
 
@@ -41,9 +56,6 @@
   padding-top: 1rem;
 }
 
-.gallery img:hover{
-  opacity: .65;
-}
 
 @media (max-width: 1200px) {
   .gallery {
@@ -83,6 +95,7 @@
   }
 
 }
+
 
 .lightbox {
   display: none;
@@ -216,10 +229,8 @@ header i {
   background-color: #a9d0e6;
   padding: 18px;
   margin-bottom: 30px;  
-  width: 70%;
   margin-right: 5rem;
   border-color: white;
-  height: 35rem;
   overflow-y: scroll;
 }
 
@@ -264,7 +275,7 @@ form button {
 }
 
 button {
-  border-radius: 2px;
+  border-radius: 5px;
   min-width: 88px;
   background-color: #f07477;
   cursor: pointer;
@@ -275,16 +286,73 @@ button {
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
   padding: 10px 6px;
 }
-
 .error {
   color: #f07477;
   font-size: smaller;
 }
-
-li {
+.guestbook_li {
   list-style-type: none;
   margin-top: 1rem;
 } 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown_ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  top:45px;
+  right:0px;
+  width: 200px;
+  background-color: white;
+  font-weight:bold;
+  position: absolute;
+
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  z-index: 1;
+}
+ .dropdown_li a {
+     color: #000;
+     text-decoration: none;
+}
+ .dropdown_li {
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 14px;
+    color: #546773;
+    margin: .25rem;
+}
+
+.dropdown_li:last-child {
+     border-bottom: none;
+}
+.dropdown_li:hover {
+     background-color: #546773;
+     color: white;
+}
+.dropdown_button:before{
+     content:"";
+     position:absolute;
+     width:0px;
+     height:0px;
+     border: 10px solid;
+     border-color: white transparent transparent transparent;
+     right:.70rem;
+     top:1rem;
+}
+
+.dropdown_button {
+  border-radius: 5px;
+  min-width: 88px;
+  background-color: #f07477;
+  cursor: pointer;
+  border: 0;
+  min-width: 120px;
+  color: #fff;
+  font-size: 14px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  padding: 10px 6px;
+}
 
 .message {
   font-size: smaller;
@@ -313,3 +381,14 @@ li {
 .formStatus {
   color: #f07477;
 }
+
+.inline {
+  display: flex;
+}
+.center {
+  display:flex;
+  justify-content: center;
+}
+
+
+
