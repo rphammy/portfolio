@@ -65,6 +65,7 @@ export class Movies extends Component {
 
 			let moviesLength = Object.keys(this.state.display).length;
 	    	if(moviesLength > 8){
+	    		console.log("hi")
 	    		this.setState({
 	    			loadMore: true
 	    		}); 
@@ -189,7 +190,6 @@ export class Movies extends Component {
 
 		const listsRef = firebase.database().ref('lists').child(item);
 		listsRef.child(currentMovie).set(currentMovieObject);
-		console.log(this.state.lists);
 	}
 
 	render() {

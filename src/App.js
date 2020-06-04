@@ -47,10 +47,14 @@ export class App extends Component {
 	  	},
 	  	{
 	  		id: 7,
-	  		title: 'Contact'
+	  		title: 'Graph'
 	  	},
 	  	{
 	  		id: 8,
+	  		title: 'Contact'
+	  	},
+	  	{
+	  		id: 9,
 	  		title: 'Say Hi'
 	  	},
 
