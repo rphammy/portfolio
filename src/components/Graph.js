@@ -6,25 +6,6 @@ import config from '../firebase.js';
 const firebase = require('firebase');
 var d3 = require("d3");
 
-const data = {
-	nodes: [	
-    	{
-    		name: "Rachle",
-    		group: 1
-    	},
-    	{
-    		name: "hi",
-    		group: "2"
-    	}
-    	],
-	links: [
-    	{
-    		source: 1,
-    		target: 0,
-    		value: 1
-    	}
-	]
-}
 
 export class Graph extends Component {
 	drag = (simulation) => {
@@ -57,6 +38,7 @@ export class Graph extends Component {
 		const obj_links = links.map(d => Object.create(d));
 		const obj_nodes = nodes.map(d => Object.create(d));
 
+
 		const svg = d3.create("svg")
 			.attr("viewBox", [0, 0, width, height]);
 
@@ -66,34 +48,87 @@ export class Graph extends Component {
 			.selectAll("line")
 			.data(obj_links)
 			.join("line")
-			.attr("stroke-width", d => Math.sqrt(d.value));
-
-		const color = (node) => {
-			if (node.group ==1) //name
-				return d3.color("blue");
-			return d3.color("pink");
-		}
+			.attr("stroke-width", d => Math.sqrt(d.value))
 
 		const radius = (node) => {
-			if (node.group ==1)
-				return 20;
-			return 40;
+			if (node.group ==1) //actors
+				return 50;
+			return 100;
 		}
+
+		const handleMouseOver = (d, i) => {
+			if(d.group === 1) {//actors 
+				const text = svg.select( "#text_"+d.name.split(' ').join(''))
+				text.style("display", "block")
+			}
+		}
+
+		const handleMouseOut = (d, i) => {
+			if(d.group === 1) {
+				const text = svg.select( "#text_"+d.name.split(' ').join(''))
+				text.style("display", "none")
+			}
+		}
+
+		const image = (node) => {
+			if(node.group ===1)
+				return d3.color("blue");
+			else if(node.group ===2)
+				return 'url(#' + node.name.replace(/[^\w\s]/gi, "").split(' ').join('');
+		} 
 
 		const simulation = d3.forceSimulation(obj_nodes)
 			.force("link", d3.forceLink().links(links).id(d => { return d.index; }).distance(200))
 			.force("charge", d3.forceManyBody())
 			.force("center", d3.forceCenter(width/2, height/2));
 
-		const node = svg.append("g")
-			.attr("stroke", "#fff")
-			.attr("stoke-width", 1.5)
+		svg.append("g")
 			.selectAll("circle")
 			.data(obj_nodes)
-			.join("circle")
-			.attr("r", 20)
-			.attr("fill", color)
-			// .call(this.drag(simulation));
+			.join("g")
+			.attr("class", "node")
+			.append("circle")
+			.attr("r", radius)
+			.call(this.drag(simulation));
+
+
+		const node =svg.selectAll("circle")
+			.style("fill", image)
+			.attr("stroke", "#fff")
+			.attr("stoke-width", 1.5)
+
+		svg.selectAll(".node")
+			.on("mouseover", handleMouseOver)
+			.on("mouseout", handleMouseOut)
+			.append('defs')
+		    .append('pattern')
+		    .attr('id', function(d,i){
+		      return  d.name.replace(/[^\w\s]/gi, "").split(' ').join('');
+		    })
+		    .attr('height',1)
+		    .attr('width',1)
+		    .attr('x',0)
+		    .attr('y',0)
+		    .append('image')
+		    .attr('xlink:href',function(d,i){
+		      return d.poster;
+		    })
+		    .attr('height',300)
+		    .attr('width',200)
+		    .attr('x',0)
+		    .attr('y',-50)
+
+		 const text = svg.selectAll(".node")
+		 	.append("text")
+            .text((d, i) => { return d.name})
+            .attr("id", (d, i) =>  { return "text_"+d.name.split(' ').join('')})
+            .attr("x", (d, i) => {return  d.x - 100})  
+            .attr("y", (d, i) => {return d.y + 50})
+            .style("fill", "white")
+            .style("display", "none")
+            .style("font-size", "20px")
+
+		 console.log(text)
 
 		simulation.on("tick", () => {
 			link
@@ -105,6 +140,9 @@ export class Graph extends Component {
 			node
 				.attr("cx", d => d.x)
 				.attr("cy", d => d.y);
+
+			text.attr("x", d => d.x + 50)
+				.attr("y", d => d.y + 50);
 		});
 
 		return svg.node();
@@ -117,6 +155,7 @@ export class Graph extends Component {
 			movies: [],
 			nodes: [],
 			links: [],
+			data: {}
 		};
 	}
 
@@ -137,12 +176,14 @@ export class Graph extends Component {
 	    		let title = movie.val().Title;
 	    		let actors = movie.val().Actors;
 	    		let imdbID = movie.val().imdbID;
+	    		let poster = movie.val().Poster
 	    		currentNodeID++;
 	    		let currentMovieID = currentNodeID;
-	    		nodes.push({
+	    		nodes = nodes.concat([{ //movie
 					name: title,
-					id: currentNodeID,
-				});
+					group: 2,
+					poster: poster
+				}]);
 
 	    		//filter through Actors
 	    		let actorsSplit = actors.split(', ');
@@ -151,17 +192,27 @@ export class Graph extends Component {
 		    			currentNodeID++;
 		    			currentLinkID++;
 
-		    			nodes.push({
+		    			nodes = nodes.concat({
 		    				name: actor,
-		    				id: currentNodeID
+		    				group: 1
 		    			});
-		    			links.push({
-		    				target: currentNodeID,
-		    				source: currentMovieID,
-		    				id: 0
+		    			links = links.concat({
+		    				target: currentMovieID,
+		    				source: currentNodeID,
+		    				value: 5
 		    			})
 	    			}
+	    			else { //repeated actor, make another link
+	    				const index = nodes.findIndex(obj => obj.name === actor);
+	    				console.log("index",index)
+	    				links = links.concat({
+	    					target: currentMovieID,
+	    					source: index,
+	    					value: 3
+	    				})
+	    			}
 	    		});
+
 
 	    		this.setState(prevState => ({
 	      			movies: {
@@ -170,14 +221,18 @@ export class Graph extends Component {
 	      			}
 	     		}));
 	    	});
+	    const elem = document.getElementById("mysvg");
+    	elem.appendChild(this.chart(nodes, links));
+
     	});
- 
-    	const elem = document.getElementById("mysvg");
-    	elem.appendChild(this.chart(data.nodes, data.links));
+
+
 	}
 	render() {
-		return <div id="mysvg">
-		</div>
+		return ( 
+			<div id="mysvg">
+			</div>
+		)
 
 	}
 }
