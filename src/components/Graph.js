@@ -52,7 +52,7 @@ export class Graph extends Component {
 
 		const radius = (node) => {
 			if (node.group ==1) //actors
-				return 50;
+				return 15;
 			return 100;
 		}
 
@@ -126,7 +126,7 @@ export class Graph extends Component {
             .attr("y", (d, i) => {return d.y + 50})
             .style("fill", "white")
             .style("display", "none")
-            .style("font-size", "20px")
+            .style("font-size", "15px")
 
 		 console.log(text)
 
@@ -141,8 +141,8 @@ export class Graph extends Component {
 				.attr("cx", d => d.x)
 				.attr("cy", d => d.y);
 
-			text.attr("x", d => d.x + 50)
-				.attr("y", d => d.y + 50);
+			text.attr("x", d => d.x + 25)
+				.attr("y", d => d.y + 25);
 		});
 
 		return svg.node();
